@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"os/exec"
+	"os/user"
+	"path/filepath"
 	"strings"
 
 	"github.com/fatih/color"
@@ -39,16 +42,27 @@ func deleteCurrentCredential() {
 
 }
 
+func accountsPath() string {
+	usr, errorGetPath := user.Current()
+
+	if errorGetPath != nil {
+		color.Red("getting user home directory: ")
+		log.Fatal(errorGetPath)
+	}
+
+	return filepath.Join(usr.HomeDir, "huba.json")
+}
+
 func add() {
 	newProfile := account{
 		Username:    os.Args[2],
 		AccessToken: os.Args[3],
 	}
 
-	jsonfile, err := os.Open("accounts.json")
+	jsonfile, err := os.Open(accountsPath())
 
 	if err != nil {
-		file, _ := os.OpenFile("accounts.json", os.O_CREATE, os.ModePerm)
+		file, _ := os.OpenFile(accountsPath(), os.O_CREATE, os.ModePerm)
 		defer file.Close()
 		encoder := json.NewEncoder(file)
 		encoder.Encode(newProfile)
@@ -66,7 +80,7 @@ func add() {
 
 	if (find == account{}) {
 		datas = append(datas, newProfile)
-		file, _ := os.OpenFile("accounts.json", os.O_CREATE, os.ModePerm)
+		file, _ := os.OpenFile(accountsPath(), os.O_CREATE, os.ModePerm)
 		defer file.Close()
 		encoder := json.NewEncoder(file)
 		encoder.Encode(datas)
@@ -77,10 +91,11 @@ func add() {
 }
 
 func searchAccount() account {
-	jsonfile, err := os.Open("accounts.json")
+	jsonfile, err := os.Open(accountsPath())
 
 	if err != nil {
-		panic(err)
+		color.Red("file accouts.json dont exists")
+		os.Exit(1)
 	}
 
 	bytesValues, _ := ioutil.ReadAll(jsonfile)
@@ -115,7 +130,7 @@ func validateArgs() {
 }
 
 // func delete() {
-// 	jsonfile, err := os.Open("accounts.json")
+// 	jsonfile, err := os.Open(accountsPath())
 
 // 	if err != nil {
 // 		color.Red("does not have any account added")
@@ -138,7 +153,7 @@ func validateArgs() {
 // 	accounts = accounts[:index]
 
 // 	file, _ := json.MarshalIndent(accounts, "", " ")
-// 	_ = ioutil.WriteFile("accounts.json", file, 0644)
+// 	_ = ioutil.WriteFile(accountsPath(), file, 0644)
 
 // }
 
