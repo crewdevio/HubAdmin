@@ -37,4 +37,6 @@ func Delete() {
 	file, _ := json.MarshalIndent(accounts, "", " ")
 	_ = ioutil.WriteFile(utils.AccountsPath(), file, 0644)
 
+	color.Red("account deleted")
+
 }
