@@ -14,9 +14,9 @@ Hub Admin is a command-line tool managing your github credentials
 
 ### Open help
 ```console
-hubadmin
+hubadmin help
 ```
-![image](https://user-images.githubusercontent.com/59743950/137823307-51cac4bc-61e7-499f-b153-a277d020f65b.png)
+![image](https://user-images.githubusercontent.com/59743950/137951279-c7489d69-325f-414d-9d53-4ab865555432.png)
 
 ### Add your credentials
 
