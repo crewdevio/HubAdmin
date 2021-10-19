@@ -31,6 +31,11 @@ hubadmin add <username> <access_token>
 ```
 ![image](https://user-images.githubusercontent.com/59743950/137822403-99c8fe17-4b4a-4e3a-91d5-6faaae550105.png)
 
+### Delete your stored github account
+```console
+huba delete <username>
+```
+![image](https://user-images.githubusercontent.com/59743950/137940254-23ad9e1c-0e75-4175-b6be-b9ba5e631db7.png)
 
 ## Support 
 cli for the moment only works on windows
