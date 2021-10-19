@@ -84,7 +84,7 @@ func add() {
 		defer file.Close()
 		encoder := json.NewEncoder(file)
 		encoder.Encode(datas)
-
+		color.Green("added account: " + os.Args[2])
 	} else {
 		color.Red("Account already exists")
 	}
