@@ -7,4 +7,5 @@ type Accounts struct {
 type Account struct {
 	Username    string `json:"username"`
 	AccessToken string `json:"access_token"`
+	Active      bool   `json:"active"`
 }

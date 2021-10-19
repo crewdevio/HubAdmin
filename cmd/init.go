@@ -24,6 +24,9 @@ func Run() {
 	case "delete":
 		Delete()
 
+	case "list":
+		List()
+
 	default:
 		utils.PrintUsage()
 	}

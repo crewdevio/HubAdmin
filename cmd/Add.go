@@ -14,6 +14,7 @@ func Add() {
 	newProfile := models.Account{
 		Username:    os.Args[2],
 		AccessToken: os.Args[3],
+		Active:      false,
 	}
 
 	jsonfile, err := os.Open(utils.AccountsPath())
