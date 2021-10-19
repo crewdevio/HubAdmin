@@ -39,7 +39,7 @@ hubadmin list
 
 ### Delete your stored github account
 ```console
-huba delete <username>
+hubadmin delete <username>
 ```
 ![image](https://user-images.githubusercontent.com/59743950/137940254-23ad9e1c-0e75-4175-b6be-b9ba5e631db7.png)
 
